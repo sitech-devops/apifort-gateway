@@ -26,3 +26,10 @@ jobs:
           repository: sitmena/delmonte-api-fort-charts
           event-type: apifort-delmonte
           client-payload: '{"tag": "${{ steps.split.outputs._0 }}", "ref":"${{ github.ref }}", "sha": "${{ github.sha }}", "test": "Deploy Delmonte APIFort"}'
+      - name: Trigger Rekab Helm Repo
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.APIFORT_PAT }}
+          repository: sitmena/api-fort-helm
+          event-type: apifort-rekab
+          client-payload: '{"tag": "${{ steps.split.outputs._0 }}", "ref":"${{ github.ref }}", "sha": "${{ github.sha }}", "test": "Deploy Rekab APIFort"}'
